@@ -1,0 +1,39 @@
+import os
+import shutil
+
+def organize_files(directory_path):
+    """
+    Organizes files in the given directory by their file extensions.
+    Each extension gets its own folder.
+    """
+
+    if not os.path.exists(directory_path):
+        print("The provided directory does not exist.")
+        return
+
+    for filename in os.listdir(directory_path):
+        file_path = os.path.join(directory_path, filename)
+
+        # Skip directories
+        if os.path.isdir(file_path):
+            continue
+
+        # Get file extension
+        _, extension = os.path.splitext(filename)
+        extension = extension.lower().replace('.', '')
+
+        if extension == "":
+            extension = "no_extension"
+
+        # Create folder for the extension if it doesn't exist
+        target_folder = os.path.join(directory_path, extension)
+        os.makedirs(target_folder, exist_ok=True)
+
+        # Move file
+        shutil.move(file_path, os.path.join(target_folder, filename))
+
+    print("Files have been successfully organized.")
+
+if __name__ == "__main__":
+    path = input("Enter the directory path to organize: ")
+    organize_files(path)
