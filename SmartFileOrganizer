@@ -7,9 +7,6 @@ def organize_files(directory_path):
     Each extension gets its own folder.
     """
 
-    if not os.path.exists(directory_path):
-        print("The provided directory does not exist.")
-        return
 
     for filename in os.listdir(directory_path):
         file_path = os.path.join(directory_path, filename)
@@ -18,6 +15,9 @@ def organize_files(directory_path):
         if os.path.isdir(file_path):
             continue
 
+    if not os.path.exists(directory_path):
+        print("The provided directory does not exist.")
+        return
     if not os.path.exists(directory_path):
         print("The provided directory does not exist.")
         return
