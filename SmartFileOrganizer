@@ -28,6 +28,11 @@ def organize_files(directory_path):
         if extension == "":
             extension = "no_extension"
 
+    for filename in os.listdir(directory_path):
+        file_path = os.path.join(directory_path, filename)
+
+        # Skip directories
+        if os.path.isdir(file_path):
         # Create folder for the extension if it doesn't exist
         target_folder = os.path.join(directory_path, extension)
         os.makedirs(target_folder, exist_ok=True)
